@@ -3,7 +3,10 @@ defmodule TunezWeb.Artists.FormLive do
 
   def mount(%{"id" => artist_id}, _session, socket) do
     artist = Tunez.Music.get_artist_by_id!(artist_id)
-    form = AshPhoenix.Form.for_update(artist, :update)
+
+    form =
+      AshPhoenix.Form.for_update(artist, :update, actor: socket.assigns.current_user)
+      |> AshPhoenix.Form.ensure_can_submit!()
 
     socket =
       socket
@@ -14,7 +17,9 @@ defmodule TunezWeb.Artists.FormLive do
   end
 
   def mount(_params, _session, socket) do
-    form = AshPhoenix.Form.for_create(Tunez.Music.Artist, :create)
+    form =
+      AshPhoenix.Form.for_create(Tunez.Music.Artist, :create, actor: socket.assigns.current_user)
+      |> AshPhoenix.Form.ensure_can_submit!()
 
     socket =
       socket
