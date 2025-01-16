@@ -2,7 +2,7 @@ import Config
 
 # Configure your database
 config :tunez, Tunez.Repo,
-  username: "postgres",
+  username: "sjm",
   password: "postgres",
   hostname: "localhost",
   database: "tunez_dev",

@@ -6,7 +6,7 @@ import Config
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
 config :tunez, Tunez.Repo,
-  username: "postgres",
+  username: "sjm",
   password: "postgres",
   hostname: "localhost",
   database: "tunez_test#{System.get_env("MIX_TEST_PARTITION")}",
